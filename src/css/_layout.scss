@@ -1,0 +1,43 @@
+.interactive {
+
+	.main-col {
+	max-width: 38.75rem;
+	position: relative;
+	display: block;
+	float: none;
+	
+	}
+
+	@media (min-width: 740px) {
+		.main-col {
+		  margin-left: 135px !important;
+		  width:560px;
+		  float: left;
+		}  
+	}
+
+	@media (min-width: 980px) {
+		.main-col {
+		  margin-left: 100px !important;
+		  width:420px;
+		  float: left;
+		}  
+	}
+
+	@media (min-width: 1140px) {
+		.main-col {
+		  margin-left: 160px !important;
+		  width:640px;
+		  float: left; 
+		}
+	}	
+
+	@media (min-width: 1300px) {
+		.main-col {
+		  margin-left: 240px !important;
+		  width:640px;
+		  float: left; 
+		}
+	}	
+
+}  

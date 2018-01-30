@@ -1,6 +1,8 @@
 @import "mq";
 @import "fonts";
 @import "palette";
+@import "d3-tip";
+@import "layout";
 
 // Uncomment for embeds
 //@import "embed";
@@ -11,4 +13,93 @@
 .element-atom,
 .interactive-atom {
     margin: 0 !important;
+
+}
+
+.interactive {
+	.chartSans {
+		font-size:1rem;
+		color:#767676;
+		font-family:'Guardian Text Sans Web', 'Agate Sans', sans-serif;
+	}
+
+	.tipText {
+		font-family:'Guardian Text Sans Web', 'Agate Sans', sans-serif;
+		font-size:0.9rem;
+	}
+
+	svg text {
+		fill:#767676;
+		font-size:1rem;
+		font-family:'Guardian Text Sans Web', 'Agate Sans', sans-serif;
+	}
+
+	#partySelector {
+		width:100%;
+		max-width:420px
+	}
+
+	.subTitle {
+		font-size:1rem;
+		color:#808080;
+		font-weight:bold;
+		font-family:'Guardian Text Sans Web', 'Agate Sans', sans-serif;
+	}
+
+	#infoButton {
+		position:absolute;
+		top:10px;
+		left:10px;
+		width:30px;
+		height:30px;
+		background-image: url("assets/img/info.svg");
+		background-size: 25px 25px;
+		background-repeat: no-repeat;
+	    background-position: center; 
+	   	cursor:pointer;
+	}
+	.key ul {
+		list-style-type:none;
+		line-height:0.8rem;
+	}
+
+	.key li {
+		display: inline-block;
+	}
+
+	.keyText {
+		font-size:0.8rem;
+		line-height:0.8rem;
+	}
+
+	.keyDiv .keyCircle:first-of-type {
+	    margin-left:0;
+	}
+
+	.keyCircle {
+		width:12px;
+		height:12px;
+		border-radius: 50%;
+		display: inline-block;
+	}
+
+	.keyFilledCircle {
+		width:10px;
+		height:10px;
+		border-radius: 50%;
+		display: inline-block;
+	}
+
+	.links line {
+	  stroke-opacity: 0.8;
+	}
+
+	.nodes circle {
+	  stroke-width: 2px;
+	  stroke-opacity: 0.8;
+	}
+
+	.nodes circle:hover {
+		stroke-opacity: 1;
+	}
 }
