@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import networkData from './networkData.json'
-import donorData from './donorData.json'
 import detectIE from './detectIE'
+import parseURL from './parseURL'
 import d3tip from 'd3-tip'
 
 var entityID,features,svg,simulation,forceStrength,bubblesExist;
@@ -9,6 +9,7 @@ var pageWidth = document.documentElement.clientWidth;
 var pageHeight = document.documentElement.clientHeight;
 var width,height,headerHeight;
 var mobile = false;
+
 if (pageWidth < 640) {
 	mobile = true;
 }
@@ -16,30 +17,20 @@ if (pageWidth < 640) {
 var version = detectIE();
 
 width = document.querySelector("#graphic").getBoundingClientRect().width;
-height = width * 0.66
+
+height = width * 0.60
+if (mobile) {
+	height = width * 1.5
+}
 
 var margin = {top: 0, right: 0, bottom: 0, left:0};
 var scaleFactor = width/1300;
-var tempRadiusData = [];
-var tempLinkData = [];
-var nodeCounts = [];
 
-d3.values(networkData).forEach(function(d) {
-	nodeCounts.push(d.nodes.length);
-	d.nodes.forEach(function (nodeData) {
-		tempRadiusData.push(nodeData.totalDonationsMade);
-		tempRadiusData.push(nodeData.totalReceivedDonations);
-	})
-	d.links.forEach(function (linkData) {
-		tempLinkData.push(linkData.value);
-	})
-});
-
-tempRadiusData.push(d3.max(donorData, function(d) {return d.sum}));
+// tempRadiusData.push(d3.max(donorData, function(d) {return d.sum}));
 
 var selector = d3.select("#partySelector");
 var allEntities = d3.keys(networkData);
-
+console.log(allEntities);
 allEntities.sort(function(x, y){
    return d3.ascending(x, y);
 })
@@ -53,6 +44,7 @@ allEntities.forEach(function (key) {
 selector.on("change", function() {
 	makeChart(d3.select(this).property('value'));
 	entityID = document.getElementById('partySelector').selectedIndex;
+	window.location.hash  = "?entityID=" + entityID;
 });
 
 d3.select("#svg").remove();
@@ -70,21 +62,21 @@ var outline = d3.scaleOrdinal()
 				.range(['#005689','#b82266','#767676','#767676'])	
 
 var nodeColors = d3.scaleOrdinal()
-					.domain(['alp','greens','liberal','nationals','minor','AssociatedEntity','Donor'])
+					.domain(['alp','greens','liberal','client','minor','lobbyist','Donor'])
 					.range(['#b51800','#298422','#005689','#aad8f1','#767676','#fc8d62','#66c2a5'])				
 
 var linkColors = d3.scaleOrdinal()
 					.domain(['Other Receipt','Donation','Mixed','Subscription','Unknown'])
 					.range(['#005689','#b82266','#767676','#767676'])							
 
-var radiusVal = 3;				
+var radiusVal = 20;				
 
 var topRadius = 50 * scaleFactor;
 var bottomRadius = 3 * scaleFactor;
 
-var radius = d3.scaleSqrt()
-				.range([bottomRadius,topRadius])    
-				.domain(d3.extent(tempRadiusData))				
+// var radius = d3.scaleSqrt()
+// 				.range([bottomRadius,topRadius])    
+// 				.domain(d3.extent(tempRadiusData))				
 
 var defs = svg.append("svg:defs");
 
@@ -124,7 +116,7 @@ var tip1 = d3tip()
 		  }
 		})
 	  .html(function(d) {
-	    return "<div class='tipText'><div><b>" + d.name + "</b></div><div>Received: $" + numFormat(d.totalReceivedDonations) + "</div><div>Given: $" + numFormat(d.totalDonationsMade) + "</div></div>";
+	    return "<div class='tipText'><div><b>" + d.name + "</b></div><div>Received: $" + numFormat(d.totalReceivedDonations) + "</div><div>Gave: $" + numFormat(d.totalDonationsMade) + "</div></div>";
   	});	
 
 svg.call(tip1);
@@ -147,7 +139,7 @@ var tip2 = d3tip()
 		  }
 		})
 	  .html(function(d) {
-	    return "<div class='tipText'><div><b>" + d.cleanName + "</b></div><div>Given: $" + numFormat(d.sum) + "</div></div>";
+	    return "<div class='tipText'><div><b>" + d.cleanName + "</b></div><div>Gave: $" + numFormat(d.sum) + "</div></div>";
   	});	
 
 svg.call(tip2);
@@ -182,39 +174,17 @@ function makeChart(partyName) {
 	var totalNodes = networkData[partyName].nodes.length;
 
 	simulation = d3.forceSimulation()
-		    .force("link", d3.forceLink().id(function(d) { return d.name; }).distance(distance))
-		    .force("collide", d3.forceCollide().radius(function(d) { 
-		    	if (d.totalDonationsMade > d.totalReceivedDonations ) {
-	      		return radius(d.totalDonationsMade) + radiusVal; 
-	      	}
-
-	      	else {
-	      		return radius(d.totalReceivedDonations) + radiusVal; 
-	      	}
-		    }).iterations(2))
+		    .force("link", d3.forceLink().id(function(d) { return d.name; }).distance(radiusVal * 10))
+		    .force("collide", d3.forceCollide().radius(radiusVal).iterations(2))
 		    .force("charge", d3.forceManyBody().strength(charge))
 		    .force("center", d3.forceCenter(width / 2, height / 2));	
 
 	forceStrength = 150;	
 
 	function charge(d) {
-		if (d.totalDonationsMade > d.totalReceivedDonations ) {
-				return -4 * (radius(d.totalDonationsMade) + radiusVal);
-			}	
-      	else {
-      		return -4 * (radius(d.totalReceivedDonations) + radiusVal); 
-      	}
-
+      		return -5 * radiusVal; 
+      	
 	}
-
-	function distance(d) {
-		var tempLinkLength = []
-		tempLinkLength.push(d.source.totalDonationsMade);
-		tempLinkLength.push(d.target.totalDonationsMade);
-		tempLinkLength.push(d.source.totalReceivedDonations);
-		tempLinkLength.push(d.target.totalReceivedDonations);
-		return 3 * (radius(d3.max(tempLinkLength)) + radiusVal);
-	}  
 
   	var link = features.append("g")
 			    .attr("class", "links")
@@ -237,16 +207,7 @@ function makeChart(partyName) {
 	    .selectAll("circle")
 	    .data(networkData[partyName].nodes)
 	    .enter().append("circle")
-	      .attr("r", function(d) { 
-	      	if (d.totalDonationsMade > d.totalReceivedDonations ) {
-	      		return radius(d.totalDonationsMade) + radiusVal; 
-	      	}
-
-	      	else {
-	      		return radius(d.totalReceivedDonations) + radiusVal; 
-	      	}
-	      	
-	      })
+	      .attr("r", radiusVal)
 	      .attr("fill", function(d) { return nodeColors(d.type); })
 	      .attr("stroke", function(d) {
 	      		return outline(d.nodeType);
@@ -265,16 +226,14 @@ function makeChart(partyName) {
 		  simulation.force("link")
 		      .links(networkData[partyName].links);
 
-
-
 	  function ticked() {
 
 	  	node.attr("cx", function(d) {
-	  		var r = radius(d3.max([d.totalDonationsMade, d.totalReceivedDonations]))
-	  			return d.x = Math.max(r + 4, Math.min(width - (r + 4), d.x)); 
+	  		var r = 5
+	  		return d.x = Math.max(r + 4, Math.min(width - (r + 4), d.x)); 
 	  		})
         	.attr("cy", function(d) {
-        	var r = radius(d3.max([d.totalDonationsMade, d.totalReceivedDonations]))	
+        	var r = 5	
         		return d.y = Math.max(r + 4, Math.min(height - (r + 4), d.y)); 
         	});
 
@@ -301,7 +260,7 @@ function makeChart(partyName) {
 				    		nodeBuffer = 4
 			}
 
-	        var t_radius = radius(d3.max([d.target.totalDonationsMade, d.target.totalReceivedDonations])) + nodeBuffer; // nodeWidth is just a custom attribute I calculate during the creation of the nodes depending on the node width
+	        var t_radius = radiusVal + nodeBuffer; // nodeWidth is just a custom attribute I calculate during the creation of the nodes depending on the node width
 	        var dx = d.target.x - d.source.x;
 	        var dy = d.target.y - d.source.y;
 	        var gamma = Math.atan2(dy,dx); // Math.atan2 returns the angle in the correct quadrant as opposed to Math.atan
@@ -349,4 +308,74 @@ d3.select("#infoButton").on("click", function(d) {
 	}
 });
 
-makeChart('Cormack Foundation Pty Ltd');
+entityID = 0;
+
+var urlVars = parseURL()
+console.log("urlVars",urlVars);
+
+var randoEntities = [6,38];
+
+if (urlVars) {
+	var newID = parseInt(urlVars['entityID'])
+	if (newID !== newID) {
+    	var randoID = randoEntities[Math.floor(Math.random() * randoEntities.length)]
+		entityID = randoID;
+		makeChart(allEntities[randoID]);
+		window.location.hash = "?entityID=" + randoID;
+		selector.property('value', allEntities[randoID]);
+	}
+
+	else {
+		entityID = newID;
+		console.log(newID)
+		makeChart(allEntities[newID]);
+		selector.property('value', allEntities[newID]);
+	}
+}
+
+else {
+	console.log("noURL var, getting rando")
+	var randoID = randoEntities[Math.floor(Math.random() * randoEntities.length)]
+	entityID = randoID;
+	makeChart(allEntities[randoID]);
+	window.location.hash = "?entityID=" + randoID;
+	selector.property('value', allEntities[randoID]);
+}
+
+var to=null;
+var lastWidth = document.querySelector(".interactive").getBoundingClientRect()
+window.addEventListener('resize', () => {
+  var thisWidth = document.querySelector(".interactive").getBoundingClientRect()
+  if (lastWidth != thisWidth) {
+    window.clearTimeout(to);
+    to = window.setTimeout(function() {
+
+    	width = document.querySelector("#graphic").getBoundingClientRect().width;
+    	pageWidth = document.documentElement.clientWidth;
+    	
+    	if (pageWidth < 640) {
+			mobile = true;
+		}
+
+		else {
+			mobile = false;
+		}
+		
+		height = width * 0.60
+		if (mobile) {
+			height = width * 1.5
+		}
+		scaleFactor = width/1300;
+
+		svg.attr("width", width - margin.left - margin.right).attr("height", height - margin.top - margin.bottom)
+
+		topRadius = 50 * scaleFactor;
+		bottomRadius = 3 * scaleFactor;
+
+		// radius.range([bottomRadius,topRadius])    
+
+		console.log("w",width,"h",height,"pageHeight",pageHeight,"mob",mobile);
+    	makeChart(allEntities[entityID]);
+    }, 500)
+  }
+})

@@ -1,75 +1,169 @@
-<div class="interactive">
-	<div class="subTitle main-col">
-		Entity types
-		<div class="key">
-		
-			<ul> 
-				<li class='keyDiv'>
-					<span class='keyCircle' style="background: #005689"></span> 
-					<span class='keyText'>Liberal party</span>
-				</li>
-				<li class='keyDiv'>
-					 <span class='keyCircle' style="background: #aad8f1"></span> 
-					 <span class='keyText'>National party</span>
-				</li>
-				<li class='keyDiv'>
-					 <span class='keyCircle' style="background: #b51800"></span> 
-					 <span class='keyText'>Labor party</span>
-				</li>
-				<li class='keyDiv'>
-					 <span class='keyCircle' style="background: #298422"></span> 
-					 <span class='keyText'>The Greens</span>
-				</li>
-				<li class='keyDiv'>
-					 <span class='keyCircle' style="background: #767676"></span> 
-					 <span class='keyText'>Minor party</span>
-				</li>
-				<li class='keyDiv'>
-					 <span class='keyCircle' style="background: #fc8d62"></span> 
-					 <span class='keyText'>Associated entity</span>
-				</li>
-				<li class='keyDiv'>
-					 <span class='keyCircle' style="background: #66c2a5"></span> 
-					 <span class='keyText'>Donor</span>
-				</li>
-			<ul>
-			
-			
+<div class="interactive-container">
+	<div class="header gv-layout-flex row">
+		<div class='gv-flex-3'>
+			<h1>Lobbying in Australia: how government is connected to big business</h1>
+			<div class="standFirst">Some of the largest donors to Australia’s two main political parties are not wealthy individuals or businesses – they are companies set up by the parties themselves known as ‘associated entities’. What are they, and where do they get their money from?</div>
+			<div class="gv-byline row">
+				<a href="http://www.theguardian.com/profile/nick-evershed" class="left">Nick Evershed</a>
+				<div class="shareButtons right">
+					<button class="interactive-share" data-network="facebook"></button>
+        			<button class="interactive-share" data-network="twitter"></button>
+				</div>	
 
-				
-
+			</div>
+			<div class="scrollSymbol center">
+				<div class="center chartSans">Scroll down</div>
+				<div id="scrollDown" class="center"></div>
+			</div>
 		</div>
-
-		Money transfer types
-
-		<div class="key">
-			<ul>
-				<li class='keyDiv'>
-					<span class='keyFilledCircle' style="border: 2px solid #b82266;"></span> 
-					<span class='keyText'>Donation</span>
-				</li>
-				<li class='keyDiv'>
-					 <span class='keyFilledCircle' style="border: 2px solid #005689;"></span> 
-					 <span class='keyText'>Other receipt</span>
-				</li>
-				<li class='keyDiv'>
-					 <span class='keyFilledCircle' style="border: 2px solid #767676;"></span> 
-					 <span class='keyText'>Mixed/Subscription/Other</span>
-				</li>
-			</ul>	
-		</div>	
-
-		<div id="selectorContainer">Currently showing: <select id="partySelector"></select>
-		</div>						
-	
-	</div>	
-
-	
-	<div class='graphicContainer'>
-		<div id="graphic" class="chartSans">
-	
-			<div class='chartTitle' id="chartTitle"></div>
-		</div>  
 	</div>
-</div>
+	<div id='container1' class='row'>
+		
+		<div class='sectionCol'>  
+			<div id='sections' class='gv-layout-flex'>
+				<div class="scrollerSection" style="height:1px;">
+				</div>
 
+				<div class="scrollerSection">
+					<a href="#0" id="no0"></a>
+					<div class='gv-flex-3'>	
+						<p>Here you can see the 20 largest financiers for Australian political parties during the 2015-16 financial year, as reported by the parties themselves. The circles are sized by the total amount of money given.</p>
+						<p><span class="chartSans"><b>Tip:</b> mouseover or tap circles to see names and amounts</span><p>
+					</div>
+				</div>
+
+				<div class="scrollerSection">
+					<a href="#1" id="no1"></a>
+					<div class='gv-flex-3'>
+						<p>On the right, you can see the largest amount comes from public funding, through the New South Wales Electoral Commission. There are also individual donors here, such as mining magnate <span class="donor">Paul Marks</span>. On the left are the <span class='assEnt'>associated entities</span>. The largest associated entity donor to the Liberal party was the <span class="assEnt">Cormack Foundation</span>, and the largest associated entity donor to the Labor party was <span class="assEnt">Labor Holdings Pty Ltd</span>.</p>
+					</div>
+				</div>
+
+				<div class="scrollerSection">
+					<a href="#2" id="no2"></a>
+					<div class='gv-flex-3'>
+						<p>Technically, an associated entity can be any organisation, so long as it is either controlled by a political party, is a financial member or has voting rights in a political party, or operates wholly (or to a significant extent) to benefit a political party.</p>
+						<p>In practice, this includes everything from the Free Enterprise Foundation, <a href='https://www.theguardian.com/australia-news/2016/apr/02/a-tale-of-two-charitable-foundations-and-a-flood-of-donations-to-the-liberals' target='_blank'>made infamous for “washing” banned NSW donations from property developers</a>, unions such as the <span class="assEnt">Shop, Distributive and Allied Employees Association</span>, and thinktanks such as the Menzies Research Centre.</p>
+					</div>
+				</div>
+
+				<div class="scrollerSection">
+					<a href="#3" id="no3"></a>
+					<div class='gv-flex-3'>
+					<p>Here, I’ve mapped out the entities and donors associated with every significant political party, where they get their money from and how much they give to the parties. This allows you to see the flow of money from start to finish, which is ordinarily difficult as each of the parties, entities and donors declare their donations to the Australian Electoral Commission separately.</p>
+					<p><span class="chartSans"><b>Tip: </b>the total flow of money between each organisation or person are shown by arrows. These  transactions are classified by the party or associated entity as a <span class="donLink">"donation"</span> or <span class="otherReceipt">"other receipt"</span>. The circle outline is coloured depending on that entity's most frequent transaction - <span class="donLink">"donation"</span>, <span class="otherReceipt">"other receipt"</span> or  <span class="mixed">mixed</span>. You can click the info button at any time to see a key, or hover or tap the circles to see more information, or drag the circles to reposition the chart.</span></p>
+				
+					</div>
+				</div>
+
+				<div class="scrollerSection">
+					<a href="#4" id="no4"></a>
+					<div class='gv-flex-3'>
+					<p><span class="assEnt">The Cormack Foundation</span> was set up decades ago from the proceeds of the sale of Melbourne radio station 3XY and is frequently one of the largest donors to the <span class="liberalParty">Liberal party</span> in any financial year. Rather than receiving donations, the foundation relies on investments to fund the Coalition.</p>
+					<p>Unusually, in the 2015-16 financial year, it also gave money to Senator David Leyonhjelm’s party, the <span class="minorParty">Liberal Democrats</span>, and <span class="minorParty">Family First</span>.</p>
+					</div>
+				</div>
+
+
+				<div class="scrollerSection">
+					<a href="#5" id="no5"></a>
+					<div class='gv-flex-3'>
+					<p><span class="assEnt">Labor Holdings</span> is the <span class="laborParty">Labor party’s</span> investment entity and, similar to the Cormack Foundation, was set up from the sale of Labor party radio station 4KQ in 1987. Again, it relies on investments rather than donations to send funds to the party.</p>
+					</div>
+				</div>
+
+				<div class="scrollerSection">
+					<a href="#6" id="no6"></a>
+					<div class='gv-flex-3'>
+					<h2>So, how do the two major parties compare?</h2>
+					<p>Here's the federal branch of the <span class="liberalParty highlight">Liberal party</span>. Aside from the <span class="assEnt highlight">Cormack Foundation</span>, there is another associated entity sending funds to the party called <span class="assEnt  highlight">Parakeelia</span>, which itself receives funds from other branches of the party. It was <a href="https://www.theguardian.com/australia-news/2016/jun/16/malcolm-turnbull-has-questions-to-answer-over-parakeelia-funds-says-shorten" target="_blank">revealed in 2016 that Liberal MPs and senators pay $2,550 from their office allowance</a> to the Liberal-owned company for software services.</p>
+					</div>
+				</div>
+
+				<div class="scrollerSection">
+					<a href="#7" id="no7"></a>
+					<div class='gv-flex-3'>
+					<p>Here's the federal <span class="laborParty highlight">Labor party</span>. Because unions are required to report as associated entities, the network of how funds get to Labor is significantly more complex. Aside from the various <span class="assEnt highlight">unions</span> and <span class="assEnt  highlight">Labor Holdings</span>, there is the <span class="assEnt  highlight">Chifley Research Centre</span>, which received funds from the NSW branch and transferred funds to the federal branch, and <span class="assEnt highlight">John Curtin House</span>, which reported funds transfers to itself.
+					</p>
+					</div>
+				</div>
+
+				<div class="scrollerSection">
+					<a href="#8" id="no8"></a>
+					<div class='gv-flex-3'>
+					<p>Finally, here’s a version of the chart that shows all the significant parties and most entities – use the drop-down menu to change the entity or party shown.</p>
+					<p><div class='subTitle selector' id="selectorContainer">Currently showing: <select id="partySelector"></select></div></p>
+					</div>
+				</div>
+
+			</div>
+		</div>  
+
+		<div class='graphicCol'>
+			<div class='graphicContainer'>
+				<div id="graphic" class="chartSans">
+					<div id="infoButton"></div>
+					<div id="keyPanel">
+							<div class='key subTitle'>
+								Entity types
+								<ul> 
+								<li class='keyDiv'>
+									<span class='keyCircle' style="background: #005689"></span> 
+									<span class='keyText'>Liberal party</span>
+								</li>
+								<li class='keyDiv'>
+									 <span class='keyCircle' style="background: #aad8f1"></span> 
+									 <span class='keyText'>National party</span>
+								</li>
+								<li class='keyDiv'>
+									 <span class='keyCircle' style="background: #b51800"></span> 
+									 <span class='keyText'>Labor party</span>
+								</li>
+								<li class='keyDiv'>
+									 <span class='keyCircle' style="background: #298422"></span> 
+									 <span class='keyText'>The Greens</span>
+								</li>
+								<li class='keyDiv'>
+									 <span class='keyCircle' style="background: #767676"></span> 
+									 <span class='keyText'>Minor party</span>
+								</li>
+								<li class='keyDiv'>
+									 <span class='keyCircle' style="background: #fc8d62"></span> 
+									 <span class='keyText'>Associated entity</span>
+								</li>
+								<li class='keyDiv'>
+									 <span class='keyCircle' style="background: #66c2a5"></span> 
+									 <span class='keyText'>Donor</span>
+								</li>
+
+							</div>	
+
+							<div class='key subTitle'>
+								Money transfer types
+								<ul>
+									<li class='keyDiv'>
+										<span class='keyFilledCircle' style="border: 2px solid #b82266;"></span> 
+										<span class='keyText'>Donation</span>
+									</li>
+									<li class='keyDiv'>
+										 <span class='keyFilledCircle' style="border: 2px solid #005689;"></span> 
+										 <span class='keyText'>Other receipt</span>
+									</li>
+									<li class='keyDiv'>
+										 <span class='keyFilledCircle' style="border: 2px solid #767676;"></span> 
+										 <span class='keyText'>Mixed/Subscription/Other</span>
+									</li>
+								</ul>	
+
+						</div>	
+					</div>	
+					<div class='chartTitle' id="chartTitle"></div>
+				</div>  
+			</div>
+		</div>  
+
+	</div>
+	<div id='gv-footer'> </div>
+
+
+</div>

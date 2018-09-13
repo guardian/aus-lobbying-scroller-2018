@@ -18,19 +18,25 @@
 
 .interactive {
 	.chartSans {
-		font-size:1rem;
+		font-size:1em;
 		color:#767676;
 		font-family:'Guardian Text Sans Web', 'Agate Sans', sans-serif;
 	}
 
+	#graphic {
+		border-top: 0.0625rem dotted #dfdfdf;
+		border-bottom: 0.0625rem dotted #dfdfdf;
+		margin-top:10px;
+	}
+
 	.tipText {
 		font-family:'Guardian Text Sans Web', 'Agate Sans', sans-serif;
-		font-size:0.9rem;
+		font-size:0.9em;
 	}
 
 	svg text {
 		fill:#767676;
-		font-size:1rem;
+		font-size:1em;
 		font-family:'Guardian Text Sans Web', 'Agate Sans', sans-serif;
 	}
 
@@ -40,7 +46,7 @@
 	}
 
 	.subTitle {
-		font-size:1rem;
+		font-size:1em;
 		color:#808080;
 		font-weight:bold;
 		font-family:'Guardian Text Sans Web', 'Agate Sans', sans-serif;
@@ -58,18 +64,19 @@
 	    background-position: center; 
 	   	cursor:pointer;
 	}
-	.key ul {
-		list-style-type:none;
-		line-height:0.8rem;
+
+	.key {
+		margin-top:5px;
+		margin-bottom: 5px;
 	}
 
-	.key li {
+	span.keyDiv {
 		display: inline-block;
 	}
 
 	.keyText {
-		font-size:0.8rem;
-		line-height:0.8rem;
+		font-size:0.8em;
+		line-height:0.8em;
 	}
 
 	.keyDiv .keyCircle:first-of-type {
