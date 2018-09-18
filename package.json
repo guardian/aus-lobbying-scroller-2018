@@ -50,6 +50,7 @@
   "dependencies": {
     "d3": "^4.13.0",
     "d3-tip": "^0.7.1",
+    "graph-scroll": "^1.0.2",
     "promise-polyfill": "^6.0.2",
     "request": "^2.81.0",
     "request-promise": "^4.2.1",

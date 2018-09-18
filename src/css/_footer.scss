@@ -1,0 +1,130 @@
+.interactive .no-data {
+    clear: both;
+    font-style: italic;
+    font-size: 1.25em;
+    padding-top: 1em;
+    text-align: center; }
+  .interactive .footer {
+    margin: 0 auto;
+    padding-bottom: 40px; }
+    .interactive .footer h2 {
+      color: #2a4006;
+      margin: 1em 10px; }
+
+    .interactive .footer:after {
+      content: "";
+      display: table;
+      clear: both; }
+/*    @media (min-width: 46.25em) {
+      .interactive .footer {
+        width: 740px; } }
+    @media (min-width: 61.25em) {
+      .interactive .footer {
+        width: 980px; } }
+    @media (min-width: 71.25em) {
+      .interactive .footer {
+        width: 1140px; } }
+    @media (min-width: 81.25em) {
+      .interactive .footer {
+        width: 1300px; } }
+*/
+        .credits_read_more {
+        width: 100%;
+        clear:both;
+        }
+    .interactive .footer .footer-grid {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap; 
+    }
+      .interactive .footer .footer-grid li {
+        width: 25%;
+        float: left;
+        display: flex;
+        flex: 1 1 auto;
+        list-style: none;
+        margin: 0;
+        padding: 0; }
+        .interactive .footer .footer-grid li .footer-item-container {
+          margin: 0 10px;
+          min-height: 80px;
+          box-sizing: border-box;
+          overflow: hidden;
+          position: relative;
+          background-color: #333;
+          color: #fff; 
+          cursor: pointer}
+          .interactive .footer .footer-grid li .footer-item-container:hover {
+            background-color: #666; }
+          .interactive .footer .footer-grid li .footer-item-container .footer-text-content {
+            margin: 0 10px;
+            padding-bottom: 10px; }
+          .interactive .footer .footer-grid li .footer-item-container img {
+            max-width: 100%; }
+          .interactive .footer .footer-grid li .footer-item-container h2 {
+            font-size: 18px;
+            font-weight: 500;
+            margin: 0.25em 0;
+            line-height: 24px;
+            color: inherit; }
+          .interactive .footer .footer-grid li .footer-item-container a {
+            color: inherit; }
+          .interactive .footer .footer-grid li .footer-item-container .anchor {
+            position: absolute;
+            z-index: 200 !important;
+            top: 0;
+            right: 0;
+            left: 0;
+            bottom: 0; }
+          .interactive .footer .footer-grid li .footer-item-container .button {
+            border: none;
+            height: 30px;
+            line-height: 32px;
+            display: inline-block;
+            color: #fff;
+            z-index: 100;
+            background-color: #bb3a7f;
+            border-radius: 62.5em;
+            padding: 0 0.625em; }
+            .interactive .footer .footer-grid li .footer-item-container .button .arrow-icon {
+              height: auto !important;
+              width: auto !important;
+              float: right;
+              fill: #fff; }
+          .interactive .footer .footer-grid li .footer-item-container .subheading {
+            /*            color: #767676;
+*/
+            font-size: 1em;
+            line-height: 1.25em;
+            margin: 0.25em 0;
+            color: #dcdcdc;
+            font-family: 'Guardian Text Sans Web', 'Agate Sans', sans-serif; }
+          .interactive .footer .footer-grid li .footer-item-container .members-header {
+            width: 100%;
+            background-color: #bb3a7f; }
+            .interactive .footer .footer-grid li .footer-item-container .members-header h2 {
+              color: #fff;
+              margin: 0;
+              padding: 0;
+              padding: 5px 5px 10px; }
+            .interactive .footer .footer-grid li .footer-item-container .members-header .guardian-logo {
+              padding: 5px; }
+    @media (max-width: 46.24em) {
+      .interactive .footer .footer-grid li {
+        width: 100%;
+        margin-bottom: 1em; }
+        .interactive .footer .footer-grid li .footer-item-container img {
+          max-width: 100px;
+          position: absolute;
+          margin: 0.25em; }
+        .interactive .footer .footer-grid li .footer-item-container .footer-text-content {
+          margin-left: 110px;
+          padding-bottom: 0; }
+        .interactive .footer .footer-grid li .footer-item-container .button {
+          margin-bottom: 5px;
+          margin-left: -105px; }
+      .interactive .footer .footer-grid, .interactive .footer li {
+        display: block; } }
